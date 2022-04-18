@@ -7,9 +7,6 @@ How to build PlatformIO based project
 4. Run these commands:
 
 ```shell
-# Change directory to example
-$ cd platform-ststm32/examples/stm32cube-hal-blink
-
 # Build project
 $ pio run
 
