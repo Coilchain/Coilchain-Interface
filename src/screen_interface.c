@@ -13,15 +13,27 @@ struct Ui_data * screen_interface_init()
     drv_SSD1351_init();
     SSD1351_Unselect();
     SSD1351_Init();
+
+    SSD1351_FillScreen(SSD1351_BLACK);
     data.assistance_level = 3;
+    data.bike_speed = 12;
     return(&data);
 }
 
 void update_ui_data()
 {
     char str[20];
-    sprintf(str, "assistance level %d", data.assistance_level);
-    SSD1351_WriteString(0, 0, str, Font_7x10, SSD1351_RED, SSD1351_BLACK);
+    sprintf(str, "%d km/h", data.bike_speed);
+    SSD1351_WriteString(0, 5, str, Font_16x26, SSD1351_BLUE, SSD1351_BLACK);
+
+    sprintf(str, "POWER %d w", data.generated_power);
+    SSD1351_WriteString(0, 5*10, str, Font_11x18, SSD1351_CYAN, SSD1351_BLACK);
+
+    sprintf(str, "%d rpm", data.cadence);
+    SSD1351_WriteString(0, 8*10, str, Font_11x18, SSD1351_CYAN, SSD1351_BLACK);
+
+    sprintf(str, "ASSI %d/4", data.assistance_level);
+    SSD1351_WriteString(0, 11*10, str, Font_7x10, SSD1351_CYAN, SSD1351_BLACK);
     
     return;
 }
